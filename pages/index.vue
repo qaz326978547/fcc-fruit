@@ -1,21 +1,23 @@
 <template>
   <div>
-    <Swiper v-bind="bannerSwiperConfig" class="-z-10">
-      <SwiperSlide>
-        <NuxtImg
-          :src="`/banner-1.jpeg`"
-          alt="傅青青水果行,公司外送車隊,新鮮外送到家"
-          class="w-full"
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <NuxtImg
-          :src="`/banner-2.jpeg`"
-          alt="傅青青水果行,門市營業時間,門市電話,線上官方客服"
-          class="w-full"
-        />
-      </SwiperSlide>
-    </Swiper>
+    <client-only>
+      <Swiper v-bind="bannerSwiperConfig" class="-z-10">
+        <SwiperSlide>
+          <NuxtImg
+            :src="`/banner-1.jpeg`"
+            alt="傅青青水果行,公司外送車隊,新鮮外送到家"
+            class="w-full"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <NuxtImg
+            :src="`/banner-2.jpeg`"
+            alt="傅青青水果行,門市營業時間,門市電話,線上官方客服"
+            class="w-full"
+          />
+        </SwiperSlide>
+      </Swiper>
+    </client-only>
   </div>
   <section class="bg-bg-2 py-8">
     <div class="container">
@@ -159,11 +161,17 @@
           傅青青使數數果品樸實出身，華麗重生…
         </p>
       </div>
+      {{ res }}
+      <!-- {{ product }} -->
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+const res = await useFetch('/api/v2/products');
+
+import { useSwiper } from 'swiper/vue';
+const swiper = useSwiper();
 //最新上市
 interface Product {
   id: number;
@@ -321,7 +329,6 @@ const newestProduct = ref<Product[]>([
     is_on_sale: 1
   }
 ]);
-
 const recommendProduct = ref<Product[]>([
   {
     id: 1,
@@ -390,6 +397,74 @@ const recommendProduct = ref<Product[]>([
     on_sale_start: '2024-05-14 16:30:00',
     on_sale_end: '2024-05-14 17:00:00',
     is_on_sale: 1
+  },
+  {
+    id: 5,
+    title: '日本套袋富士蘋果6入禮盒(#28)',
+    category: '蘋果',
+    description: '新鮮水果',
+    content: '圖片測試',
+    origin_price: '1300.00',
+    price: '1300.00',
+    quantity: 40,
+    is_enabled: 1,
+    unit: '盒',
+    image: '/apple-1.jpeg',
+    images: ['/apple-1.jpeg', '/apple-1.jpeg'],
+    on_sale_start: '2024-05-14 16:30:00',
+    on_sale_end: '2024-05-14 17:00:00',
+    is_on_sale: 1
+  },
+  {
+    id: 6,
+    title: '日本套袋富士蘋果6入禮盒(#28)',
+    category: '蘋果',
+    description: '新鮮水果',
+    content: '圖片測試',
+    origin_price: '1300.00',
+    price: '1300.00',
+    quantity: 40,
+    is_enabled: 1,
+    unit: '盒',
+    image: '/apple-1.jpeg',
+    images: ['/apple-1.jpeg', '/apple-1.jpeg'],
+    on_sale_start: '2024-05-14 16:30:00',
+    on_sale_end: '2024-05-14 17:00:00',
+    is_on_sale: 1
+  },
+  {
+    id: 7,
+    title: '日本套袋富士蘋果6入禮盒(#28)',
+    category: '蘋果',
+    description: '新鮮水果',
+    content: '圖片測試',
+    origin_price: '1300.00',
+    price: '1300.00',
+    quantity: 40,
+    is_enabled: 1,
+    unit: '盒',
+    image: '/apple-1.jpeg',
+    images: ['/apple-1.jpeg', '/apple-1.jpeg'],
+    on_sale_start: '2024-05-14 16:30:00',
+    on_sale_end: '2024-05-14 17:00:00',
+    is_on_sale: 1
+  },
+  {
+    id: 1,
+    title: '日本套袋富士蘋果6入禮盒(#28)',
+    category: '蘋果',
+    description: '新鮮水果',
+    content: '圖片測試',
+    origin_price: '1300.00',
+    price: '1300.00',
+    quantity: 40,
+    is_enabled: 1,
+    unit: '盒',
+    image: '/apple-1.jpeg',
+    images: ['/apple-1.jpeg', '/apple-1.jpeg'],
+    on_sale_start: '2024-05-14 16:30:00',
+    on_sale_end: '2024-05-14 17:00:00',
+    is_on_sale: 1
   }
 ]);
 
@@ -397,6 +472,7 @@ const recommendProduct = ref<Product[]>([
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
 interface SwiperConfig {
   modules: any[];
   slidesPerView: number;

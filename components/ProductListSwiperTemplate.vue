@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div :class="props.id">
-      <Swiper v-bind="module" :navigation="true">
+      <Swiper v-bind="props.module" :navigation="true">
         <SwiperSlide
           class="group bg-white shadow-md"
           v-for="item in props.productData"
@@ -60,8 +60,7 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-const swiperBtn = useSwiper();
+import { Swiper, SwiperSlide } from 'swiper/vue';
 interface Product {
   id: number;
   title: string;
@@ -109,7 +108,7 @@ const props = defineProps({
 <style scoped>
 .swiper {
   padding: 40px 0 !important;
-  margin: 0 40px;
+  /* margin: 0 40px; */
 }
 :deep(.swiper-pagination-bullet) {
   width: 14px;
@@ -123,6 +122,7 @@ const props = defineProps({
 :deep(.swiper-button-next),
 :deep(.swiper-button-prev) {
   color: #729d38;
+  opacity: 0.5;
 }
 </style>
 

@@ -47,9 +47,15 @@ export default defineNuxtConfig({
     }
   },
   vite: {
-    // optimizeDeps: {
-    //   include: ['nuxt-icon']
-    // },
+    'server': {
+      'proxy': {
+        '/api': {
+          'target': 'https://fcc.zeabur.app/',
+          'changeOrigin': true,
+          rewrite: (path) => path.replace(/^\/api/, '/api') // 确保路径不被错误地替换
+        }
+      }
+    },
     resolve: {
       alias: {
         images: '/assets/img'

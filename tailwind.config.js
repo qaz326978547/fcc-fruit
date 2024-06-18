@@ -9,6 +9,9 @@ export default {
   },
   theme: {
     extend: {
+      boxShadow: {
+        'fixed-button': '0 0 5px rgba(0, 0, 0, 0.5)'
+      },
       flex: {
         '50': '1 1 50%'
       },

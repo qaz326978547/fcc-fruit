@@ -10,7 +10,7 @@
             class="text-white lg:hidden"
           />
         </button>
-        <h1 class="bg ml-[10px] lg:ml-0">
+        <h1 class="bg ml-[10px] w-full lg:ml-0">
           <nuxt-link :to="{ name: 'index' }">
             <NuxtImg
               src="/logo.png"

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 25 25">
+  <defs>
+    <clipPath id="clip-record">
+      <rect width="25" height="25"/>
+    </clipPath>
+  </defs>
+  <g id="record" clip-path="url(#clip-record)">
+    <text id="訂購_紀錄" data-name="訂購
+紀錄" transform="translate(2 9)" fill="#fff" font-size="11" font-family="YuGothicUI-Bold, Yu Gothic UI" font-weight="700"><tspan x="0" y="0">訂購</tspan><tspan y="0" font-family="SegoeUI-Bold, Segoe UI"></tspan><tspan x="0" y="12">紀錄</tspan></text>
+  </g>
+</svg>

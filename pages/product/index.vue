@@ -1,5 +1,6 @@
 <template>
-  <div>123123</div>
+  <div>{{ dataListQuery }}</div>
+  <div>{{ typeQuery }}</div>
 </template>
 
 <script setup lang="ts">
