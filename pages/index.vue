@@ -168,8 +168,8 @@
 </template>
 
 <script setup lang="ts">
-const res = await useFetch('/api/v2/products');
-
+const res = await useFetch('https://fcc.zeabur.app/api/v2/products');
+const { data: product } = res;
 import { useSwiper } from 'swiper/vue';
 const swiper = useSwiper();
 //最新上市
