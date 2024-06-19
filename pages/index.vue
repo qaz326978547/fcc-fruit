@@ -22,6 +22,9 @@
   <section class="bg-bg-2 py-8">
     <div class="container">
       <h3 class="mb-3 text-center text-h3 font-bold">最新上市</h3>
+      <input type="file" name="" id="" @change="handleFileUpload" />
+      <img v-if="s3ImageUrl" :src="s3ImageUrl" alt="" />
+      <img src="~/assets/img/apple-1.jpeg" alt="" />
       <nuxt-link
         class="flex items-center justify-end font-bold text-primary-red"
         :to="{
@@ -105,7 +108,7 @@
             class="relative mx-auto my-8 max-h-[450px] w-full max-w-[400px] overflow-hidden rounded-xl bg-center shadow-md"
           >
             <NuxtImg
-              :src="`/index_phone.png`"
+              :src="`/aws/index_phone.png`"
               alt="傅青青水果行,門市營業時間,門市電話,線上官方客服"
               class="w-full"
             />
@@ -190,6 +193,30 @@ interface Product {
   on_sale_end: string;
   is_on_sale: number;
 }
+const s3ImageUrl = ref<string>('');
+
+const handleFileUpload = (e: any) => {
+  console.log(e.target.files[0]);
+  //post
+  const formData = new FormData();
+  formData.append('file', e.target.files[0]);
+  fetch('https://fcc.zeabur.app/api/v2/admin/aws/s3', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      Authorization:
+        'Bearer ' +
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI1YTMyMjIyZWY0MTBmZDY4OTdkZDAxNWEwOGJiODIwOGNlN2E4OWQ2NTU2MmFmM2Q0MzZlNTg3NjczNjNmNmMwN2Y4MDg4OWY0NTliMjZlIn0.eyJhdWQiOiIxIiwianRpIjoiYjVhMzIyMjJlZjQxMGZkNjg5N2RkMDE1YTA4YmI4MjA4Y2U3YTg5ZDY1NTYyYWYzZDQzNmU1ODc2NzM2M2Y2YzA3ZjgwODg5ZjQ1OWIyNmUiLCJpYXQiOjE3MTg3MDU3NzQsIm5iZiI6MTcxODcwNTc3NCwiZXhwIjoxNzUwMjQxNzc0LCJzdWIiOiIxIiwic2NvcGVzIjpbImFkbWluIl19.hzkEPD4WQ8VTNkwQfZb7mLvqmx-eg5nI4OZamRZY44U1kWQ68qpEUgj-Ym5SZuItWt3bq5JsTpczTcHiio9SGTAsmr0bnXj4C5Pvxg13tScE52L_PKa7nnDiMU4_sS68L9cm36XsxU5y5-Wv38-Tp_uIwmemK5RyLIQr9TIpFPqjej77G_ugwgvlKKwVy-KWNLTY17Zvm3h4KPD_MXRsIzeWHyyDFV8w2xR-DYGNzvHbD_ok2cTMjQScB2mrMxzC0ZAiypKU3_dNjGgieQJamihOO3TGpEIXsCacTYqdJVKoFmAVBisZiGS9N8PWVpbS3oE_tcAGCWk9L14t6X59hY8F_mszkl3FW1uUWipck5wFSevAyyeIAUT8GekD-W9of7xZIYScx33Ncr_I474BNEUyNbggv-4KOBrHlzhTy-oy9b5FRE5-cReUPH6Jof_igvK3gjKA4v3X13AnocQoWuuZy9UNMoP1K9Fl7KG70_J3r7xzYdksHAmpC5-VJFSW0BRwGj8yQglE-18UZw2SCmHn5h9lhDc5rDaUfIvlywuZvu7zAyTKATlN_Faa6s_9uhFfhwIRKdYzs5_uPbjwQ1x3nwqmVuCudyh-ydkq2gmmcRt8KLQDRatRTgG_BsaCeta77wK6iiqWUb6fsF9rGXI-oUtCp9YItmynXlzz8PM'
+    }
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res.data.imageUrl);
+      s3ImageUrl.value = String(res.data.imageUrl);
+      console.log(s3ImageUrl.value);
+    })
+    .catch((error) => console.log(error));
+};
 
 const newestProduct = ref<Product[]>([
   {

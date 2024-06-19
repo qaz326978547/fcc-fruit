@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   image: {
     dir: 'assets/img',
+    baseURL: 'https://fcc-laravel.s3.ap-northeast-1.amazonaws.com',
     screens: {
       sm: 640,
       md: 768,
@@ -47,6 +48,9 @@ export default defineNuxtConfig({
     }
   },
   vite: {
+    define: {
+      'process.env': import.meta.env //意思是將 import.meta.env 這個物件的內容設定到 process.env 這個物件上
+    },
     'server': {
       'proxy': {
         '/api': {
@@ -58,7 +62,7 @@ export default defineNuxtConfig({
     },
     resolve: {
       alias: {
-        images: '/assets/img'
+        images: import.meta.env.VITE_APP_IMAGE_URL || '/assets/img'
       }
     }
   }
